@@ -9,20 +9,25 @@ The admin center currently supports the following scenarios:
 - Deployment to English language and worldwide tenants.
 - Cloud-hosted add-in deployment.
 - Automatic installation on launch of the Office application.
-- Add-in URLs hosted within a firewall.
-- Deployment of Office Store add-ins (coming soon).
-
-The admin center also includes a deployment compatibility checking service.
+- Deployment of Office Store add-ins.
 
 Future investments in add-in deployment scenarios will focus on the Office 365 admin center. We recommend that you use the admin center to deploy add-ins to your organization, if your organization meets the prerequisites.
 
 ## Prerequisites for centralized deployment 
 
 You can deploy add-ins via the admin center if your organization meets the following criteria:
+For Word, Excel and PowerPoint
+Your users must be using Office Professional Plus 2016 on the following operating systems:
+ - Win32: build 16.0.8067 or later
+ - Mac: build 15.34.17051500 or later
+ 
+For Outlook
+ - 2013 Click to Run version: 15.0.4819.1000 or later
+ - 2013 MSI version: 15.0.4937.1000 or later*
+ - 2016 Click to Run version: 16.0.7726.5702 or later
+ - 2016 MSI version: 16.0.4494.1000 or later*
+  *In MSI version of Outlook, admin-installed add-ins will show in the appropriate ribbon in Outlook but will not show the add-in in 'My add-ins' section 
 
-- Users are running a version of Office 2016 ProPlus:
-    - Windows build 16.0.8027 or later
-    - Mac build 15.33.170327 or later
 - Users sign in to Office 2016 with their work or school account.
 - Your organization uses the Azure Active Directory (Azure AD) identity service.
 - Users' Exchange mailboxes have [OAuth enabled](https://msdn.microsoft.com/en-us/library/office/dn626019(v=exchg.150).aspx#Anchor_0).
@@ -34,11 +39,11 @@ Currently, add-ins for the following Office clients are supported.
 | Word                  | X                         | X             | X                     |
 | Excel                 | X                         | X             | X                     |
 | PowerPoint            | X                         | X             | X                     |
-| Outlook               | Coming Soon               | Coming Soon   | Coming Soon           |
+| Outlook               | X (preview)               | X (preview)   | X (preview)           |
 
 The admin center does not support the following:
 
-- Office 2013 (Word, Excel, PowerPoint, or Outlook)
+- Office 2013 (Word, Excel, PowerPoint)
 - Office for iPad
 - SharePoint Add-ins
 - COM/VSTO based Add-ins
@@ -62,14 +67,20 @@ To publish an add-in via centralized deployment:
 3.	Choose **Add an Office Add-in** at the top of the page. You have the following options:
 
     - Add an add-in from the Office Store.
+    Note: Add-Ins deployed from the Office Store will automatically update on the tenant after a few days of updating on the Office Store
     - Choose **Browse** to locate your manifest (.xml) file.
     - Enter a URL for your manifest in the field provided.
 
 5.	Choose **Next**.
 6.	If you're adding an add-in from the Office Store, select the add-in. The add-in is now enabled. 
-7.	Choose **Edit** to assign the add-in to users. 
-8.	Search for the people or groups to whom you want to deploy the add-in and choose **Add** next to their name.
-9.	Choose **Save**, review the add-in settings, and then choose **Close**.
+7. For Outlook Add-Ins only:
+On the user default page you can specify if the Add-In is optional or mandatory. Optional means the Add-In can be removed by the user. Mandatory means the Add-In cannot be removed by the user. For mandatory add-ins you can also determine if the add-in is enabled or disabled.
+The default option is Optional, enabled
+8.	Choose **Edit** to assign the add-in to users. 
+9.	Search for the people or groups to whom you want to deploy the add-in and choose **Add** next to their name.
+10. For Single Sign-In Add-Ins only:
+This page will display the list of Graph scopes that the Add-In requires in order to function 
+11.	Choose **Save**, review the add-in settings, and then choose **Close**.
 
 
 If the add-in supports add-in commands, the commands will appear on the Office application ribbon for all users to whom the add-in is deployed. 
